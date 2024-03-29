@@ -8,7 +8,9 @@ function calculateMaturityValue() {
     const rate = parseFloat(rateInput.value) / 100;
     const tenure = parseFloat(tenureInput.value);
     
-    const maturityValue = sipAmount * (((1 + rate) ** tenure - 1) / rate) * (1 + rate);
+    const periods = tenure * 12; // Assuming monthly SIP
+    
+    const maturityValue = sipAmount * (((Math.pow(1 + rate, periods) - 1) / rate) * (1 + rate));
     
     maturityValueSpan.textContent = `₹ ${maturityValue.toFixed(2)}`;
 }
